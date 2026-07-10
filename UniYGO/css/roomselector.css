@@ -1,0 +1,17 @@
+#room-form {
+    margin-top: 15vh;
+}
+
+select {
+    border-radius: 10px;
+}
+
+#bottoni {
+    position: fixed;
+    top: 15vh;
+    left: 1vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    z-index: 1000;
+}

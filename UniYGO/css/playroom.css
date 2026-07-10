@@ -1,0 +1,612 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    background-color: #222;
+    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+#container {
+    display: grid;
+    grid-template-rows: repeat(3,minmax(40px, 14vh));
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+
+    gap: 1.5vh;
+    padding: 2vh;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
+    flex: 1;
+
+    --zona-carta: minmax(40px, 14vh);
+    --zona-vuota: minmax(10px, 3vh);
+
+    grid-template-columns: 
+        var(--zona-carta)
+        var(--zona-vuota)
+        var(--zona-carta)
+        var(--zona-carta)
+        var(--zona-carta)
+        var(--zona-carta)
+        var(--zona-carta)
+        var(--zona-vuota)
+        var(--zona-carta)
+        var(--zona-carta);
+}
+
+.fz img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out;
+}
+
+.fz {
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.defense {
+    transform: rotate(-90deg);
+}
+
+#extra-deck { 
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#field-spell {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#main-deck {
+    grid-row: 3;
+    grid-column: 9;
+}
+
+#banishment {
+    grid-row: 2;
+    grid-column: 10;
+}
+
+#link0 {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+
+#link1 {
+    grid-column: 6;
+    grid-row: 1;
+}
+
+
+#zm0 {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#zm1 {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+#zm2 {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+#zm3 {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+#zm4 {
+    grid-column: 7;
+    grid-row: 2;
+}
+
+#zst0 {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+#zst1 {
+    grid-column: 4;
+    grid-row: 3;
+}
+
+#zst2 {
+    grid-column: 5;
+    grid-row: 3;
+}
+
+#zst3 {
+    grid-column: 6;
+    grid-row: 3;
+}
+
+#zst4 {
+    grid-column: 7;
+    grid-row: 3;
+}
+
+#graveyard {
+    grid-column: 9;
+    grid-row: 2;
+}
+
+
+#mano {
+    display:flex;
+    justify-content:flex-start;
+    align-items: center;
+    gap:10px;
+
+    padding: 1vh 20px;
+    margin: 0 auto 2vh auto;
+    width: 70vh;
+    height: 22vh;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+
+    border: 2px solid rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.4);
+    border-radius:10px;
+    
+    flex-shrink: 0;
+    
+}
+
+#mano::-webkit-scrollbar, #highlight-textbox::-webkit-scrollbar {
+    height: 8px;
+}
+
+#mano::-webkit-scrollbar-thumb, #highlight-textbox::-webkit-scrollbar-thumb {
+    background: gold;
+    border-radius: 10px;
+}
+
+#mano::-webkit-scrollbar-track, #highlight-textbox::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+#highlight-textbox::-webkit-scrollbar {
+    width: 5px;
+}
+
+@keyframes pescataAnimazione {
+    from { transform: translateY(50px); opacity: 0;}
+    to {transform :translateY(0px); opacity: 1;}    
+}
+
+
+
+
+
+#main-deck, #graveyard, #banishment, #extra-deck{
+    position: relative;
+}
+
+
+#graveyard:hover .grave-menu {
+    display: flex;
+    background: white;
+}
+
+#carta-in-mano {
+    width: 100%;
+    display: block;
+}
+
+.grave-menu, .banned-menu, .deck-menu, .extra-menu {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    padding: 10px;
+    border-radius: 8px;
+    flex-direction:column;
+    gap: 8px;
+    z-index:10;
+}
+
+
+#main-deck:hover .deck-menu {
+    display: flex;
+    background: white;
+}
+
+
+#banishment:hover .banned-menu {
+    display: flex;
+    background: white;
+}
+
+#extra-deck:hover .extra-menu {
+    display: flex;
+    background-color: white;
+}
+
+
+button {
+    background:white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size:12px;
+    border-radius:4px;
+    font-weight: bold;
+    width: 80%;
+}
+
+button:hover {
+    background: #ffcc00;
+}
+
+.hide {
+    display:none;
+}
+
+
+.modal {
+    display:none;
+    position:fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #222;
+    margin: 5% auto;
+    padding: 20px;
+    width: 70%;
+    max-height: 80vh;
+    overflow-x: hidden;
+    border-radius: 10px;
+    border: 2px solid gold;
+    position: absolute;
+    overflow-y: auto;
+    top: 6vh;
+    bottom: 6vh;
+    left: 36vh;
+    right: 4vh;
+    color: #ffcc00;
+}
+
+.card-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap:10px;
+}
+
+.grave-card-menu, .deck-card-menu, .banned-card-menu, .extra-card-menu {
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    z-index: 5;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;   
+}
+
+
+
+.grave-card-wrapper, .field-card-wrapper, .deck-card-wrapper, .banned-card-wrapper, .extra-card-wrapper {
+    position:relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.deck-card-menu button, .field-card-menu button {
+    width: 80%;
+    font-size: 10px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.grave-card-menu button {
+    width: 80%;
+    font-size: 10px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.banned-card-menu button {
+    width: 80%;
+    font-size: 10px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.extra-card-menu button {
+    width: 80%;
+    font-size: 10px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.hand-card-wrapper {
+    position: relative;
+    width:12.5vh;
+    height:18vh;
+
+    animation:pescataAnimazione 0.5s ease-out;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+
+.hand-card-wrapper:hover {
+    transform: scale(1.1) translateY(-1vh);
+    z-index: 100;
+}
+
+.hand-card-menu, .field-card-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    
+}
+
+.hand-card-wrapper img{
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hand-card-menu button {
+    width: 80%;
+    cursor: pointer;
+    background:white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size:12px;
+    border-radius:4px;
+    font-weight: bold;
+}
+
+.hand-card-menu button:hover {
+    background: #ffcc00;
+}
+
+.highlight {
+    outline: 3px solid #ffcc00;
+    box-shadow: 0 0 12px rgba(255,204,0,0.55);
+    z-index: 2;
+}
+
+.flip-anim {
+    animation: scopriCarta 0.3s ease-in-out;
+}
+
+@keyframes scopriCarta {
+    from { transform: scale(0.8) rotateY(90deg); opacity: 0.7;}
+    to { transform: scale(1) rotateY(0deg); opacity: 1;}    
+}
+
+.field-anim {
+    animation: attivaCarta 0.3s ease-in;
+}
+
+@keyframes attivaCarta {
+    from { transform: translateY(15px); opacity: 0;}
+    to { transform: translateY(0px); opacity: 1;}
+}
+
+#card-highlight {
+    position: absolute;
+    right:100%;
+    margin-right: 2vh;
+    top: 9vh;
+    height: 80vh;
+    width: 30vh;
+    background: rgba(0, 0, 0, 0.85);
+    border: rgba(255,204,0,0.55);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5vh;
+    box-sizing: border-box;
+    z-index: 1000;
+    color:white;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.5);   
+}
+
+#card-highlight-img-container {
+    width: 100%;
+    margin-bottom: 1.5vh;
+}
+
+#img-anteprima {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+#dettagli-highlight {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#highlight-nome {
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    color: #ffcc00;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+
+#highlight-textbox {
+    background: rgba(255,204,0,0.05);
+    padding: 10px;
+    border-radius: 5px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+
+
+#grave-img, #banned-img {
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chat-container {
+    position: absolute;
+    left: 100%;
+    margin-left: 2vh;
+    top: 9vh;
+    width: 30vh;
+    height: 80vh;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,204,0,0.55);
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    z-index:100;
+}
+
+#chat-box {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 11px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.chat {
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+.chat.user {
+    color: #ffcc00;
+}
+
+.chat.system {
+    color: #ffcc00;
+    font-style: italic;
+}
+
+#chat-form {
+    display: flex;
+    border-top: 1px solid #444;
+}
+
+#chat-input {
+    flex: 1;
+    background-color: #222;
+    border: none;
+    color: white;
+    padding: 4px;
+    font-size: 11px;
+    border-bottom-left-radius: 5px;
+}
+
+.chat-input:focus {
+    outline: none;
+    background: #333;
+}
+
+#chat-form button {
+    background: #ffcc00;
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 0 8px;
+    font-size: 10px;
+    cursor: pointer;
+    border-bottom-right-radius: 5px;
+}
+
+#chat-form button:hover {
+    background: #ffe680;
+}
+
+#btn-esci {
+    position: absolute;
+}
+
+.btn {
+    background: #000;
+    color: #ffcc00;
+    border: 0.2vh solid #ffcc00;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border-radius: 3px;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #ffcc00;
+    color: #000;
+    box-shadow: 0 0 1vh #ffcc00;
+}
+
+
+
+
+
+
+
+
+
+
+

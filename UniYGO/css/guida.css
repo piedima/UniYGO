@@ -1,0 +1,15 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    max-width: 800px;
+    margin: 4vh auto;
+    padding: 2vh;
+    line-height: 1.5;
+}
+h1 { color: #ffcc00; border-bottom: 2px solid #ffcc00; padding-bottom: 10px; }
+h2 { color: #ffcc00; margin-top: 30px; }
+p { margin: 10px 0; }
+ul { margin: 10px 0 10px 20px; }
+li { margin: 5px 0; }
+.nota { color: #aaa; font-style: italic; }

@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    padding-top: 80px;
+    height: 100vh;
+    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 10vh;
+    background-color: #000;
+    border-bottom: 3px solid #ffcc00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 999;
+    
+}
+
+
+
+form, .container {
+    background: #222;
+    padding:20px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 1000px;
+}
+
+input[type='text'], input[type='password'], select {
+    background: #111;
+    border: 1px solid #ffcc00;
+    color: white;
+    padding: 8px;
+    margin: 10px 0;
+    width: 90%;
+}
+
+button, input[type='submit'], input[type='button'], .btn {
+    background: #000;
+    color: #ffcc00;
+    border: 0.2vh solid #ffcc00;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+.btn {
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+button:hover, input[type='submit']:hover, input[type='button']:hover, .btn:hover {
+    background: #ffcc00;
+    color: #000;
+    box-shadow: 0 0 1vh #ffcc00;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+button a {
+    color: inherit;
+}
+
+.header .nome {
+    color: #fff;
+}
+
+body::-webkit-scrollbar, .deck::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+body::-webkit-scrollbar-thumb, .deck::-webkit-scrollbar-thumb {
+    background: gold;
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track, .deck::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+.deck:hover::-webkit-scrollbar-thumb {
+    background: #222;
+}
+
+.header h1, .header .nome {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 24px;
+    text-shadow: 0 0 10px rgba(255,204,0,0.5);
+    font-weight: bold;
+}
+
+.header h1 {
+    color: #ffcc00;;
+}
+
+
+.header .nome {
+    color: #fff;
+    margin-left: 10px;
+}
+
+.menu-principale {
+    display: flex;
+    gap: 4vh;
+    margin-top: 25vh;
+    margin-bottom: 5vh;
+}
+
+.btn-large {
+    font-size: 20px;
+    padding: 2.5vh 5vh;
+    border-width: 0.4vh;
+}
+
+form .logout-form {
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: auto;
+    margin: 0;
+    margin-top: 10vh;
+}
+
+#btn_guida_utente {
+    position: absolute;
+    left: 3vh;
+    margin: 0;
+}
+
+
